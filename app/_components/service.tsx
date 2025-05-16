@@ -4,8 +4,8 @@ import Image from 'next/image'
 function Service() {
 	return (
 		<>
-			<section className='w-full h-[100vh] bg-transparent border-2 m-0 px-0 py-0'>
-				<div className='relative w-full h-[90vh] bg-[#1C2752] m-0 px-0 py-4 flex flex-col justify-start items-center mx-auto'>
+			<section className='w-full h-[100vh] bg-transparent  m-0 px-0 py-0'>
+				<div className='relative w-full h-[100vh] bg-[#1C2752] m-0 px-0 py-4 flex flex-col justify-start items-center mx-auto'>
 					<div className='flex justify-center items-center bg-gray-400/70 gap-3 px-4 py-1 '>
 						<Image src='/image2.png' alt='image' width={25} height={25} />
 						<p>What We Offer</p>

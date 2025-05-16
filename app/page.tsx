@@ -1,6 +1,8 @@
 'use client'
 
 import About_us from './_components/about'
+import Contacts from './_components/contacts'
+import Faq from './_components/faq'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import Products from './_components/products'
@@ -16,8 +18,8 @@ function Page() {
 			<About_us />
 			<Service />
 			<Products />
-			{/* <FAQ /> */}
-			{/* <Contact /> */}
+			<Faq />
+			<Contacts />
 		</div>
 	)
 }
