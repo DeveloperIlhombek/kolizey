@@ -1,8 +1,9 @@
 'use client'
 
 import About_us from './_components/about'
-import Contacts from './_components/contacts'
+import { ContactSection } from './_components/contacts'
 import Faq from './_components/faq'
+import { FooterSection } from './_components/footer'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import Products from './_components/products'
@@ -19,7 +20,8 @@ function Page() {
 			<Service />
 			<Products />
 			<Faq />
-			<Contacts />
+			<ContactSection />
+			<FooterSection />
 		</div>
 	)
 }

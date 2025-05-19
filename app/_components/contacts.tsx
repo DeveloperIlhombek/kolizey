@@ -1,105 +1,215 @@
+'use client'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Building2, Clock, Mail, Phone } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-function Contacts() {
+import { Textarea } from '@/components/ui/textarea'
+
+const formSchema = z.object({
+	firstName: z.string().min(2).max(255),
+	lastName: z.string().min(2).max(255),
+	email: z.string().email(),
+	phone: z.string().min(5).max(255),
+	message: z.string(),
+})
+
+export const ContactSection = () => {
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			phone: '',
+			message: '',
+		},
+	})
+
+	function onSubmit(values: z.infer<typeof formSchema>) {
+		const { firstName, lastName, email, phone, message } = values
+		console.log(values)
+
+		const mailToLink = `mailto:leomirandadev@gmail.com?subject=${phone}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`
+
+		window.location.href = mailToLink
+	}
+
 	return (
-		<div className='min-h-screen bg-white py-20'>
-			<div className='container mx-auto px-4'>
-				<div className='text-center mb-16'>
-					<h2 className='text-4xl font-bold text-amber-500 mb-4'>Contact Us</h2>
-					<p className='text-gray-600 max-w-2xl mx-auto'>
-						Get in touch with us for quotes, custom orders, or any questions
-						about our products and services.
-					</p>
-				</div>
+		<section id='contact' className='container py-24 sm:py-32'>
+			<section className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+				<div>
+					<div className='mb-4'>
+						<h2 className='text-lg text-primary mb-2 tracking-wider'>
+							Contact
+						</h2>
 
-				<div className='max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8'>
-					{/* Contact Form */}
-					<div className='bg-gray-50 p-8 rounded-lg'>
-						<h3 className='text-2xl font-semibold mb-6'>Send us a Message</h3>
-						<form className='space-y-4'>
-							<div>
-								<label
-									htmlFor='name'
-									className='block text-sm font-medium text-gray-700 mb-1'
-								>
-									Name
-								</label>
-								<input
-									type='text'
-									id='name'
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500'
-								/>
-							</div>
-							<div>
-								<label
-									htmlFor='email'
-									className='block text-sm font-medium text-gray-700 mb-1'
-								>
-									Email
-								</label>
-								<input
-									type='email'
-									id='email'
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500'
-								/>
-							</div>
-							<div>
-								<label
-									htmlFor='message'
-									className='block text-sm font-medium text-gray-700 mb-1'
-								>
-									Message
-								</label>
-								<textarea
-									id='message'
-									rows={4}
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500'
-								></textarea>
-							</div>
-							<Button className='w-full bg-amber-500 text-white'>
-								Send Message
-							</Button>
-						</form>
+						<h2 className='text-3xl md:text-4xl font-bold'>Connect With Us</h2>
 					</div>
+					<p className='mb-8 text-muted-foreground lg:w-5/6'>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+						ipsam sint enim exercitationem ex autem corrupti quas tenetur
+					</p>
 
-					{/* Contact Information */}
-					<div className='bg-gray-50 p-8 rounded-lg'>
-						<h3 className='text-2xl font-semibold mb-6'>Contact Information</h3>
-						<div className='space-y-6'>
-							<div>
-								<h4 className='font-semibold text-lg mb-2'>Address</h4>
-								<p className='text-gray-600'>
-									123 Architecture Avenue
-									<br />
-									Design District
-									<br />
-									City, State 12345
-								</p>
+					<div className='flex flex-col gap-4'>
+						<div>
+							<div className='flex gap-2 mb-1'>
+								<Building2 />
+								<div className='font-bold'>Find us</div>
 							</div>
-							<div>
-								<h4 className='font-semibold text-lg mb-2'>Phone</h4>
-								<p className='text-gray-600'>+1 (555) 123-4567</p>
+
+							<div>Samarqamd sh</div>
+						</div>
+
+						<div>
+							<div className='flex gap-2 mb-1'>
+								<Phone />
+								<div className='font-bold'>Call us</div>
 							</div>
-							<div>
-								<h4 className='font-semibold text-lg mb-2'>Email</h4>
-								<p className='text-gray-600'>info@romancolumns.com</p>
+
+							<div>+998 99 123 45 67</div>
+						</div>
+
+						<div>
+							<div className='flex gap-2 mb-1'>
+								<Mail />
+								<div className='font-bold'>ilxomdevelop@gmail.com</div>
 							</div>
+
+							<div>leomirandadev@gmail.com</div>
+						</div>
+
+						<div>
+							<div className='flex gap-2'>
+								<Clock />
+								<div className='font-bold'>Visit us</div>
+							</div>
+
 							<div>
-								<h4 className='font-semibold text-lg mb-2'>Business Hours</h4>
-								<p className='text-gray-600'>
-									Monday - Friday: 9:00 AM - 6:00 PM
-									<br />
-									Saturday: 10:00 AM - 4:00 PM
-									<br />
-									Sunday: Closed
-								</p>
+								<div>Dushanba - Shanba</div>
+								<div>8:00 - 18:00</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+
+				<Card className='bg-muted/60 dark:bg-card'>
+					<CardHeader className='text-primary text-2xl'> </CardHeader>
+					<CardContent>
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(onSubmit)}
+								className='grid w-full gap-4'
+							>
+								<div className='flex flex-col md:!flex-row gap-8'>
+									<FormField
+										control={form.control}
+										name='firstName'
+										render={({ field }) => (
+											<FormItem className='w-full'>
+												<FormLabel>First Name</FormLabel>
+												<FormControl>
+													<Input placeholder='Leopoldo' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='lastName'
+										render={({ field }) => (
+											<FormItem className='w-full'>
+												<FormLabel>Last Name</FormLabel>
+												<FormControl>
+													<Input placeholder='Miranda' {...field} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+
+								<div className='flex flex-col gap-1.5'>
+									<FormField
+										control={form.control}
+										name='email'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type='email'
+														placeholder='leomirandadev@gmail.com'
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+								<div className='flex flex-col gap-1.5'>
+									<FormField
+										control={form.control}
+										name='phone'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type='email'
+														placeholder='leomirandadev@gmail.com'
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+
+								<div className='flex flex-col gap-1.5'>
+									<FormField
+										control={form.control}
+										name='message'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Message</FormLabel>
+												<FormControl>
+													<Textarea
+														rows={5}
+														placeholder='Your message...'
+														className='resize-none'
+														{...field}
+													/>
+												</FormControl>
+
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+
+								<Button className='mt-4'>Send message</Button>
+							</form>
+						</Form>
+					</CardContent>
+
+					<CardFooter></CardFooter>
+				</Card>
+			</section>
+		</section>
 	)
 }
-
-export default Contacts

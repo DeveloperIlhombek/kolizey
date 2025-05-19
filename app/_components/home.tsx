@@ -21,17 +21,20 @@ function Hero() {
 							height={30}
 							priority
 						/>
-						<p className='letter-spacing-[0.36px]'>
-							Improve our customers’ lives by providing effective solutions.
+						<p className='letter-spacing-[0.56px] tracking-wide'>
+							Go‘zallik detallarda — har bir ustun o‘ziga xos asar!
 						</p>
 					</div>
-					<h2 className='absolute top-[70px] left-[20px] capitalize text-7xl text-white font-samibold w-[712px] h-[156px]  letter-spacing-[1.2px]'>
-						A recognized leader in services industry
+					<h2 className='absolute top-[70px] left-[20px] capitalize text-6xl text-white font-samibold w-[712px] h-[156px]  letter-spacing-[1.2px]'>
+						<span className='text-transparent px-2  font-bold bg-gradient-to-r from-amber-500 to-amber-300/50 bg-clip-text'>
+							Kolizey
+						</span>{' '}
+						bilan Qurilishingiz Klassikaga Aylanadi
 					</h2>
 
 					<div>
-						<Button className='text-black text-lg absolute w-[130px] h-[60px] left-[20px] top-[250px] bg-[#FFB342]'>
-							View Service
+						<Button className='text-black text-lg absolute w-[130px] h-[60px] left-[20px] top-[250px] bg-[#FFB342] hover:text-[#FFB342]'>
+							Bog‘lanish
 						</Button>
 						<Button className='text-black text-lg absolute w-[60px] rounded-full h-[60px] left-[200px] top-[250px] bg-[#FFB342]'>
 							<FaCirclePlay className='w-fit' />

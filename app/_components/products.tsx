@@ -1,5 +1,5 @@
 function Products() {
-	return <div>Partners</div>
+	return <div>Products</div>
 }
 
 export default Products
