@@ -1,3 +1,4 @@
+import ContactDialog from '@/components/shared/contact-dialog'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
@@ -41,6 +42,7 @@ const navlinks = [
 	{ id: 5, name: 'FAQ', url: '#faq' },
 	{ id: 6, name: 'Contact', url: '#contact' },
 ]
+
 function Navbar() {
 	return (
 		<section className='flex flex-col m-0 p-0'>
@@ -89,8 +91,17 @@ function Navbar() {
 					))}
 				</div>
 				<div className='flex items-center justify-center gap-4'>
-					<p>Option</p>
-					<Button>Submit Request</Button>
+					<p>Lang</p>
+					<ContactDialog
+						trigger={
+							<Button
+								type='submit'
+								className='bg-primary text-primary-foreground'
+							>
+								Bog&apos;lanish
+							</Button>
+						}
+					/>
 				</div>
 			</nav>
 		</section>

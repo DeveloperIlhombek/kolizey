@@ -41,22 +41,23 @@ export const ContactSection = () => {
 		const { firstName, lastName, email, phone, message } = values
 		console.log(values)
 
-		const mailToLink = `mailto:leomirandadev@gmail.com?subject=${phone}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`
+		const mailToLink = `mailto:ilxomdeveloper@gmail.com?subject=${phone}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`
 
 		window.location.href = mailToLink
 	}
 
 	return (
-		<section id='contact' className='container py-24 sm:py-32'>
+		<section id='contact' className='container py-24 sm:py-32 '>
 			<section className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 				<div>
 					<div className='mb-4'>
-						<h2 className='text-lg text-primary mb-2 tracking-wider'>
+						<h2 className='text-lg  text-primary mb-2 tracking-wider'>
 							Contact
 						</h2>
 
-						<h2 className='text-3xl md:text-4xl font-bold'>Connect With Us</h2>
+						<h2 className='text-3xl md:text-4xl  font-bold'>Connect With Us</h2>
 					</div>
+					<div className='flex flex-col items-center gap-4'></div>
 					<p className='mb-8 text-muted-foreground lg:w-5/6'>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
 						ipsam sint enim exercitationem ex autem corrupti quas tenetur

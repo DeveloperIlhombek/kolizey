@@ -35,7 +35,7 @@ function About_us() {
 				<div className='col-span-1 flex flex-col justify-center items-start gap-4 p-10'>
 					<div className='absolute bg-[#F4F4F4] flex items-center justify-center gap-4 w-[250px] h-[30px] top-[10px]'>
 						<Image src={'/image2.png'} alt='image' width={25} height={25} />
-						<span>Welcome BlueCollar</span>
+						<span>Welcome to Kolizey</span>
 					</div>
 					<h2 className='absolute font-samibold text-4xl w-[536px] h-[60px] top-[60px]'>
 						We Provide Your Future
