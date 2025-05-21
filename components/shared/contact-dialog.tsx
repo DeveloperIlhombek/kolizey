@@ -1,4 +1,6 @@
 'use client'
+
+import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogContent,
@@ -6,13 +8,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { z } from 'zod'
-import { Button } from '../ui/button'
 import {
 	Form,
 	FormControl,
@@ -20,15 +15,59 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Textarea } from '../ui/textarea'
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { z } from 'zod'
+
+// Server funksiyasi
+async function sendMessage(values: {
+	username: string
+	phone: string
+	email: string
+	message: string
+}) {
+	const telegrambotid = process.env.NEXT_PUBLIC_TELEGRAM_BOT_API
+	const telegramchatid = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID
+
+	if (!telegrambotid || !telegramchatid) {
+		throw new Error('Server sozlamalarida xatolik')
+	}
+
+	const response = await fetch(
+		`https://api.telegram.org/bot${telegrambotid}/sendMessage`,
+		{
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				chat_id: telegramchatid,
+				text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.email}\nXabar: ${values.message}`,
+			}),
+		}
+	)
+
+	if (!response.ok) {
+		throw new Error('Xabar yuborishda xatolik')
+	}
+
+	return { message: 'Xabar yuborildi' }
+}
 
 const formSchema = z.object({
 	username: z
 		.string()
 		.min(2, { message: "Ism kamida 2 ta belgidan iborat bo'lishi kerak" }),
-	phone: z.string().min(9, { message: "Telefon raqami noto'g'ri kiritilgan" }),
+	phone: z
+		.string()
+		.min(9, { message: "Telefon raqami noto'g'ri kiritilgan" })
+		.regex(/^\+?[1-9]\d{1,14}$/, {
+			message: "Telefon raqami faqat raqamlardan iborat bo'lishi kerak",
+		}),
 	email: z.string().email({ message: "Noto'g'ri email formati" }),
 	message: z
 		.string()
@@ -38,6 +77,8 @@ const formSchema = z.object({
 function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 	const [open, setOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const triggerRef = useRef<HTMLButtonElement>(null)
+	const firstInputRef = useRef<HTMLInputElement>(null)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -49,34 +90,27 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 		},
 	})
 
+	useEffect(() => {
+		if (open && firstInputRef.current) {
+			firstInputRef.current.focus()
+		}
+	}, [open])
+
+	const closeDialog = () => {
+		setOpen(false)
+		form.reset()
+		triggerRef.current?.focus()
+	}
+
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
 			setIsLoading(true)
-			const telegrambotid = process.env.NEXT_PUBLIC_TELEGRAM_BOT_API!
-			const telegramchatid = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID!
-
-			const response = await fetch(
-				`https://api.telegram.org/bot${telegrambotid}/sendMessage`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						chat_id: telegramchatid,
-						text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.email}\nXabar: ${values.message}`,
-					}),
-				}
-			)
-
-			if (!response.ok) throw new Error('Xabar yuborishda xatolik yuz berdi')
-
+			await sendMessage(values)
 			toast.success('Xabaringiz muvaffaqiyatli yuborildi!')
-			form.reset()
-			setOpen(false)
+			closeDialog()
 		} catch (error) {
 			toast.error(
-				"Xabar yuborishda xatolik yuz berdi. Iltimos, qayta urunib ko'ring."
+				"Xabar yuborishda xatolik yuz berdi. Internet aloqangizni tekshiring va qayta urinib ko'ring."
 			)
 			console.error('Xabar yuborishda xatolik:', error)
 		} finally {
@@ -84,28 +118,44 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 		}
 	}
 
+	const inputClass =
+		'border-[#1C2752]/20 focus:border-[#FFB342] focus:ring-[#FFB342]'
+
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogTrigger asChild>{trigger}</DialogTrigger>
-			<DialogContent className='sm:max-w-[425px] bg-background backdrop:bg-black/50 backdrop:backdrop-blur-sm'>
-				<DialogHeader>
-					<DialogTitle className='text-xl text-center font-bold text-primary'>
-						BIZ BILAN BOG&apos;LANISH
+			<DialogTrigger asChild ref={triggerRef}>
+				{trigger}
+			</DialogTrigger>
+			<DialogContent className='sm:max-w-[425px] bg-white rounded-2xl shadow-xl overflow-hidden'>
+				<DialogHeader className='bg-[#1C2752] px-6 py-4 flex items-center justify-between'>
+					<DialogTitle className='text-xl font-bold text-white font-spaceGrotesk'>
+						BIZ BILAN BOGLANISH
 					</DialogTitle>
 				</DialogHeader>
 
 				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className='p-6 space-y-4'
+					>
 						<FormField
 							control={form.control}
 							name='username'
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Ismingiz</FormLabel>
+									<FormLabel className='text-sm font-medium text-gray-700'>
+										Ismingiz
+									</FormLabel>
 									<FormControl>
-										<Input placeholder="To'liq ismingiz" {...field} />
+										<Input
+											placeholder="To'liq ismingiz"
+											className={inputClass}
+											{...field}
+											ref={firstInputRef}
+											aria-label='Ismingizni kiriting'
+										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className='text-red-500 text-sm' />
 								</FormItem>
 							)}
 						/>
@@ -115,15 +165,19 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 							name='phone'
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Telefon raqamingiz</FormLabel>
+									<FormLabel className='text-sm font-medium text-gray-700'>
+										Telefon raqamingiz
+									</FormLabel>
 									<FormControl>
 										<Input
 											placeholder='+998 XX XXX XX XX'
 											type='tel'
+											className={inputClass}
 											{...field}
+											aria-label='Telefon raqamingizni kiriting'
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className='text-red-500 text-sm' />
 								</FormItem>
 							)}
 						/>
@@ -133,15 +187,19 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 							name='email'
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Email manzilingiz</FormLabel>
+									<FormLabel className='text-sm font-medium text-gray-700'>
+										Email manzilingiz
+									</FormLabel>
 									<FormControl>
 										<Input
 											placeholder='email@example.com'
 											type='email'
+											className={inputClass}
 											{...field}
+											aria-label='Email manzilingizni kiriting'
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className='text-red-500 text-sm' />
 								</FormItem>
 							)}
 						/>
@@ -151,20 +209,29 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 							name='message'
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Xabaringiz</FormLabel>
+									<FormLabel className='text-sm font-medium text-gray-700'>
+										Xabaringiz
+									</FormLabel>
 									<FormControl>
 										<Textarea
 											placeholder='Xabaringizni yozing...'
 											rows={5}
+											className={`min-h-[100px] ${inputClass}`}
 											{...field}
+											aria-label='Xabaringizni kiriting'
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className='text-red-500 text-sm' />
 								</FormItem>
 							)}
 						/>
 
-						<Button type='submit' disabled={isLoading} className='w-full'>
+						<Button
+							type='submit'
+							disabled={isLoading}
+							className='bg-[#FFB342] hover:bg-[#1C2752] text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200 w-full'
+							aria-label={isLoading ? 'Xabar yuborilmoqda' : 'Xabarni yuborish'}
+						>
 							{isLoading ? (
 								<>
 									<Loader2 className='mr-2 h-4 w-4 animate-spin' />

@@ -2,7 +2,10 @@ import Image from 'next/image'
 
 function About_us() {
 	return (
-		<div className='bg-white w-full h-[100vh] relative flex justify-center items-center '>
+		<div
+			className='bg-white w-full h-[100vh] relative flex justify-center items-center'
+			id='about'
+		>
 			<div>
 				<Image
 					src={'/rect1.svg'}
