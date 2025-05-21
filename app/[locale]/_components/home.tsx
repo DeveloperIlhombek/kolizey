@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { FaCirclePlay } from 'react-icons/fa6'
 
 function Hero() {
+	const t = useTranslations('Dict')
 	return (
 		<div>
 			<div
@@ -29,7 +31,7 @@ function Hero() {
 						<span className='text-transparent px-2  font-bold bg-gradient-to-r from-amber-500 to-amber-300/50 bg-clip-text'>
 							Kolizey
 						</span>{' '}
-						bilan Qurilishingiz Klassikaga Aylanadi
+						{t('heroTitle')}
 					</h2>
 
 					<div>

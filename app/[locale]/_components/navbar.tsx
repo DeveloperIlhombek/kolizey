@@ -1,4 +1,5 @@
 import ContactDialog from '@/components/shared/contact-dialog'
+import { LanguageSwitcher } from '@/components/shared/language-switcher'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
@@ -91,7 +92,7 @@ function Navbar() {
 					))}
 				</div>
 				<div className='flex items-center justify-center gap-4'>
-					<p>Lang</p>
+					<LanguageSwitcher />
 					<ContactDialog
 						trigger={
 							<Button
