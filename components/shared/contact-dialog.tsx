@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { useProductStore } from '@/store/selectedProducts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -31,6 +32,7 @@ async function sendMessage(values: {
 	phone: string
 	email: string
 	message: string
+	selectedProducts: string[]
 }) {
 	const telegrambotid = process.env.NEXT_PUBLIC_TELEGRAM_BOT_API
 	const telegramchatid = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID
@@ -39,6 +41,11 @@ async function sendMessage(values: {
 		throw new Error('Server sozlamalarida xatolik')
 	}
 
+	const productListText =
+		values.selectedProducts.length > 0
+			? values.selectedProducts.map((p, i) => `${i + 1}. ${p}`).join('\n')
+			: 'Tanlangan mahsulotlar yo‘q'
+
 	const response = await fetch(
 		`https://api.telegram.org/bot${telegrambotid}/sendMessage`,
 		{
@@ -46,7 +53,7 @@ async function sendMessage(values: {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				chat_id: telegramchatid,
-				text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.email}\nXabar: ${values.message}`,
+				text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.email}\nXabar: ${values.message}\n\n🛒 Tanlangan mahsulotlar:\n${productListText}`,
 			}),
 		}
 	)
@@ -75,6 +82,7 @@ const formSchema = z.object({
 })
 
 function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
+	const { selectedProducts, resetSelection } = useProductStore()
 	const [open, setOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const triggerRef = useRef<HTMLButtonElement>(null)
@@ -105,9 +113,15 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
 			setIsLoading(true)
-			await sendMessage(values)
+			await sendMessage({
+				...values,
+				selectedProducts: selectedProducts.map(
+					p => `${p.name} (Turi: ${p.value})`
+				),
+			})
 			toast.success('Xabaringiz muvaffaqiyatli yuborildi!')
 			closeDialog()
+			resetSelection()
 		} catch (error) {
 			toast.error(
 				"Xabar yuborishda xatolik yuz berdi. Internet aloqangizni tekshiring va qayta urinib ko'ring."

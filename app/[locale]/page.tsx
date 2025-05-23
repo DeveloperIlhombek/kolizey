@@ -1,12 +1,12 @@
 'use client'
 
+import ExitIntentPopup from '@/components/shared/exitIntentPopup'
 import About_us from './_components/about'
 import { ContactSection } from './_components/contacts'
-import Faq from './_components/faq'
 import { FooterSection } from './_components/footer'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
-import Products from './_components/products'
+import { Products } from './_components/products'
 import Service from './_components/service'
 
 function Page() {
@@ -15,11 +15,11 @@ function Page() {
 			<div className='fixed top-0 left-0 w-full z-10'>
 				<Navbar />
 			</div>
+			<ExitIntentPopup />
 			<Hero />
 			<About_us />
 			<Service />
 			<Products />
-			<Faq />
 			<ContactSection />
 			<FooterSection />
 		</div>
