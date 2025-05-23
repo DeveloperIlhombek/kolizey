@@ -1,13 +1,13 @@
 'use client'
 
 import ExitIntentPopup from '@/components/shared/exitIntentPopup'
-import About_us from './_components/about'
+import { About } from './_components/about'
 import { ContactSection } from './_components/contacts'
 import { FooterSection } from './_components/footer'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import { Products } from './_components/products'
-import Service from './_components/service'
+import { Service } from './_components/service'
 
 function Page() {
 	return (
@@ -17,7 +17,7 @@ function Page() {
 			</div>
 			<ExitIntentPopup />
 			<Hero />
-			<About_us />
+			<About />
 			<Service />
 			<Products />
 			<ContactSection />
