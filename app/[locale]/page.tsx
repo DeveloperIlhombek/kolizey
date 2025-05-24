@@ -3,12 +3,12 @@
 //import ExitIntentPopup from '@/components/shared/exitIntentPopup'
 import { About } from './_components/about'
 import { ContactSection } from './_components/contacts'
+import FloatingActions from './_components/floating-actions'
 import Footer from './_components/footer'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import { Products } from './_components/products'
 import { Service } from './_components/service'
-import Sidecontact from './_components/sidecontact'
 
 function Page() {
 	return (
@@ -18,7 +18,7 @@ function Page() {
 			</div>
 			{/* <ExitIntentPopup /> */}
 			<Hero />
-			<Sidecontact />
+			<FloatingActions />
 			<About />
 			<Service />
 			<Products />
