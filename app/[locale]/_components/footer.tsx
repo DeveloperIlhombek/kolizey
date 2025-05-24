@@ -1,119 +1,85 @@
-import { Separator } from '@/components/ui/separator'
-import { ChevronsDownIcon } from 'lucide-react'
+import { navlink } from '@/constant'
+import Image from 'next/image'
 import Link from 'next/link'
+import { FaPhoneVolume } from 'react-icons/fa6'
+import { SlLocationPin } from 'react-icons/sl'
+import { TfiEmail } from 'react-icons/tfi'
 
-export const FooterSection = () => {
+function Footer() {
 	return (
-		<footer id='footer' className='container py-24 sm:py-32'>
-			<div className='p-10 bg-card border border-secondary rounded-2xl'>
-				<div className='grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8'>
-					<div className='col-span-full xl:col-span-2'>
-						<Link href='#' className='flex font-bold items-center'>
-							<ChevronsDownIcon className='w-9 h-9 mr-2 bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg border border-secondary' />
-
-							<h3 className='text-2xl'>Kolizey</h3>
-						</Link>
-					</div>
-
-					<div className='flex flex-col gap-2'>
-						<h3 className='font-bold text-lg'>Contact</h3>
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Github
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Twitter
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Instagram
-							</Link>
-						</div>
-					</div>
-
-					<div className='flex flex-col gap-2'>
-						<h3 className='font-bold text-lg'>Platforms</h3>
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								iOS
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Android
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Web
-							</Link>
-						</div>
-					</div>
-
-					<div className='flex flex-col gap-2'>
-						<h3 className='font-bold text-lg'>Help</h3>
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Contact Us
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								FAQ
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Feedback
-							</Link>
-						</div>
-					</div>
-
-					<div className='flex flex-col gap-2'>
-						<h3 className='font-bold text-lg'>Socials</h3>
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Twitch
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Discord
-							</Link>
-						</div>
-
-						<div>
-							<Link href='#' className='opacity-60 hover:opacity-100'>
-								Dribbble
-							</Link>
-						</div>
-					</div>
-				</div>
-
-				<Separator className='my-6' />
-				<section className=''>
-					<h3 className=''>
-						&copy; 2025 Designed and developed by
+		<footer className='group container relative mt-12 grid  grid-flow-col grid-cols-9 gap-2   overflow-hidden rounded-t-3xl bg-sky-100 p-6 text-gray-50 shadow-inner shadow-gray-50 ring-2 backdrop-blur-sm group-hover:duration-500 dark:bg-slate-900 dark:ring-0'>
+			<div className='col-span-2'>
+				<Image
+					src={'/kolizeylogo.png'}
+					alt='logo'
+					width={200}
+					height={200}
+					className='object-cover'
+					loading='lazy'
+				/>
+				<h1 className='ml-2 font-space-grotesk font-bold text-black dark:text-white'>
+					Kolizey
+				</h1>
+			</div>
+			<div className='col-span-4 grid grid-cols-2 gap-2'>
+				<div className='col-span-1 ml-2 flex flex-col gap-4 font-serif'>
+					<h2 className='text-start text-3xl font-bold text-blue-500'>
+						Havolalar
+					</h2>
+					<div className='z-10 flex flex-col text-6xl font-extrabold duration-500 before:absolute before:left-56 before:top-20 before:-z-10 before:size-20 before:rounded-full before:bg-sky-400 before:blur-xl before:duration-500 after:absolute after:bottom-44 after:left-96 after:-z-10 after:size-20 after:rounded-full after:bg-green-400 after:blur-xl after:duration-500 group-hover:before:-translate-y-11 group-hover:before:translate-x-11 group-hover:after:translate-x-24 group-hover:after:translate-y-16'></div>
+					<div className='z-10 flex flex-col text-6xl font-extrabold duration-500 before:absolute before:right-96 before:top-28 before:-z-10 before:size-32 before:rounded-full before:bg-blue-200 before:blur-2xl before:duration-700 after:absolute after:bottom-32 after:left-10 after:-z-10 after:size-12 after:rounded-full after:bg-sky-400 after:blur-xl after:duration-500 group-hover:before:-translate-y-11 group-hover:before:translate-x-11 group-hover:after:translate-x-11 group-hover:after:translate-y-16'></div>
+					{navlink.map(item => (
 						<Link
-							target='_blank'
-							href='https://github.com/DeveloperIlhombek'
-							className='text-primary transition-all border-primary hover:border-b-2 ml-1'
+							href={item.route}
+							key={item.label}
+							className='font-semibold text-black dark:text-white'
 						>
-							Ilhombek
+							{item.label}
 						</Link>
-					</h3>
-				</section>
+					))}
+				</div>
+				<div className='col-span-1'>
+					<div className='z-10 flex flex-col text-6xl font-extrabold duration-500 before:absolute before:right-1/2 before:top-10 before:-z-10 before:size-32 before:rounded-full before:bg-yellow-200 before:blur-2xl before:duration-700 after:absolute after:bottom-32 after:left-40 after:-z-10 after:size-20 after:rounded-full after:bg-red-400 after:blur-xl after:duration-500 group-hover:before:-translate-x-9 group-hover:before:-translate-y-11 group-hover:after:translate-x-32 group-hover:after:translate-y-16'></div>
+					<h2 className='text-start text-3xl font-bold text-blue-500'>
+						Contact
+					</h2>
+					<div className='flex flex-col items-start gap-2 p-2 font-semibold text-black dark:text-white'>
+						<div className='flex items-center justify-center gap-2'>
+							<FaPhoneVolume />
+							<span>+99866 240-67-68</span>
+						</div>
+						<div className='flex items-center justify-center gap-2'>
+							<TfiEmail />
+							<Link href={'info@univ-silkroad.uz'}>info@univ-silkroad.uz</Link>
+						</div>
+					</div>
+					{/* <div className='mt-10 flex flex-col items-center justify-center gap-0 font-bold'>
+						<span className='text-black dark:text-white '>
+							Ijtimoiy Tarmoqlar:
+						</span>
+						<FloatingDockDemo />
+					</div> */}
+				</div>
+			</div>
+			<div className='col-span-3 text-4xl'>
+				<h2 className='text-start text-3xl font-bold text-blue-500'>Manzil</h2>
+				<iframe
+					src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3072.23345321683!2d66.95548167548847!3d39.64446030228089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4d19cb14364aa7%3A0x5744a105b44f5139!2s%22Ipak%20yo%E2%80%98li%22%20turizm%20va%20madaniy%20meros%20xalqaro%20universiteti!5e0!3m2!1sen!2s!4v1728451383312!5m2!1sen!2s'
+					className='h-44 w-full rounded-2xl'
+					loading='lazy'
+					title='joylashuv'
+				></iframe>
+				<div className='mt-4 flex items-center justify-center gap-2 font-serif text-black dark:text-white'>
+					<span>
+						<SlLocationPin className='text-blue-500' />
+					</span>
+					<p className='text-sm'>
+						University Boulevard 17 str, 140104, Samarqand Region
+					</p>
+				</div>
 			</div>
 		</footer>
 	)
 }
+
+export default Footer

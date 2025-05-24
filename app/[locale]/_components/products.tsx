@@ -17,7 +17,10 @@ import Image from 'next/image'
 
 export const Products = () => {
 	return (
-		<div className='flex flex-col min-h-[100vh] w-full bg-slate-950 overflow-hidden p-4'>
+		<div
+			className='flex flex-col min-h-[100vh] w-full bg-slate-950 overflow-hidden p-4'
+			id='products'
+		>
 			<div className='w-full max-w-7xl mx-auto'>
 				<Tabs defaultValue='all' className='w-full text-black '>
 					<TabsList className='w-full flex justify-center gap-1 items-center mb-6'>

@@ -123,3 +123,42 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+@layer utilities {
+	.font-roboto {
+		font-family: var(--font-roboto);
+	}
+
+	.font-spaceGrotesk {
+		font-family: var(--font-space-grotesk);
+	}
+
+	.shine-effect {
+		animation: shine 2s infinite;
+	}
+
+	@keyframes shine {
+		from {
+			transform: translateX(-100%);
+		}
+		to {
+			transform: translateX(200%);
+		}
+	}
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.rounded-b-4xl {
+	border-bottom-left-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+}

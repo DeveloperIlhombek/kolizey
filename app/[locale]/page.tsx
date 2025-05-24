@@ -1,9 +1,9 @@
 'use client'
 
-import ExitIntentPopup from '@/components/shared/exitIntentPopup'
+//import ExitIntentPopup from '@/components/shared/exitIntentPopup'
 import { About } from './_components/about'
 import { ContactSection } from './_components/contacts'
-import { FooterSection } from './_components/footer'
+import Footer from './_components/footer'
 import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import { Products } from './_components/products'
@@ -15,13 +15,14 @@ function Page() {
 			<div className='fixed top-0 left-0 w-full z-10'>
 				<Navbar />
 			</div>
-			<ExitIntentPopup />
+			{/* <ExitIntentPopup /> */}
 			<Hero />
 			<About />
+			<hr />
 			<Service />
 			<Products />
 			<ContactSection />
-			<FooterSection />
+			<Footer />
 		</div>
 	)
 }

@@ -1,3 +1,21 @@
+export const navlink = [
+	{
+		label: 'Bosh sahifa',
+		route: '/',
+	},
+	{
+		label: 'Biz haqimizda',
+		route: '/about',
+	},
+	{
+		label: 'Xizmatlar',
+		route: '/service',
+	},
+	{
+		label: 'Mahsulotlar',
+		route: '/products',
+	},
+]
 export const products = [
 	{
 		id: '1',
