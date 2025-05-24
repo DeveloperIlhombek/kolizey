@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { Roboto, Space_Grotesk as SpaceGrotesk } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import './globals.css'
 
 const roboto = Roboto({
@@ -48,6 +49,18 @@ export default async function RootLayout({
 				<NextIntlClientProvider messages={messages}>
 					<Toaster position='top-center' />
 					{children}
+					<Script
+						id='replain-widget'
+						strategy='afterInteractive'
+						dangerouslySetInnerHTML={{
+							__html: `
+			window.replainSettings = { id: '7de5b43d-e33a-4487-8199-918701d94981' };
+(function(u){var s=document.createElement('script');s.async=true;s.src=u;
+var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);
+})('https://widget.replain.cc/dist/client.js');
+		`,
+						}}
+					/>
 				</NextIntlClientProvider>
 			</body>
 		</html>

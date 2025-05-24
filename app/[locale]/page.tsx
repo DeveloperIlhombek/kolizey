@@ -8,6 +8,7 @@ import Hero from './_components/home'
 import Navbar from './_components/navbar'
 import { Products } from './_components/products'
 import { Service } from './_components/service'
+import Sidecontact from './_components/sidecontact'
 
 function Page() {
 	return (
@@ -17,8 +18,8 @@ function Page() {
 			</div>
 			{/* <ExitIntentPopup /> */}
 			<Hero />
+			<Sidecontact />
 			<About />
-			<hr />
 			<Service />
 			<Products />
 			<ContactSection />
