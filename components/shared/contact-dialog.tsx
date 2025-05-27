@@ -30,7 +30,7 @@ import { z } from 'zod'
 async function sendMessage(values: {
 	username: string
 	phone: string
-	email: string
+	location: string
 	message: string
 	selectedProducts: string[]
 }) {
@@ -53,7 +53,7 @@ async function sendMessage(values: {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				chat_id: telegramchatid,
-				text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.email}\nXabar: ${values.message}\n\n🛒 Tanlangan mahsulotlar:\n${productListText}`,
+				text: `Yangi xabar:\nIsm: ${values.username}\nTel: ${values.phone}\nEmail: ${values.location}\nXabar: ${values.message}\n\n🛒 Tanlangan mahsulotlar:\n${productListText}`,
 			}),
 		}
 	)
@@ -75,7 +75,9 @@ const formSchema = z.object({
 		.regex(/^\+?[1-9]\d{1,14}$/, {
 			message: "Telefon raqami faqat raqamlardan iborat bo'lishi kerak",
 		}),
-	email: z.string().email({ message: "Noto'g'ri email formati" }),
+	location: z
+		.string()
+		.min(3, { message: "Manzil kamida 3 ta belgidan iborat bo'lishi kerak" }),
 	message: z
 		.string()
 		.min(3, { message: "Xabar kamida 3 ta belgidan iborat bo'lishi kerak" }),
@@ -93,7 +95,7 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 		defaultValues: {
 			username: '',
 			phone: '',
-			email: '',
+			location: '',
 			message: '',
 		},
 	})
@@ -198,19 +200,19 @@ function ContactDialog({ trigger }: { trigger: React.ReactNode }) {
 
 						<FormField
 							control={form.control}
-							name='email'
+							name='location'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel className='text-sm font-medium text-gray-700'>
-										Email manzilingiz
+										Manzilingiz
 									</FormLabel>
 									<FormControl>
 										<Input
-											placeholder='email@example.com'
-											type='email'
+											placeholder='Samarqand shahri'
+											type='text'
 											className={inputClass}
 											{...field}
-											aria-label='Email manzilingizni kiriting'
+											aria-label='Manzilingizni kiriting'
 										/>
 									</FormControl>
 									<FormMessage className='text-red-500 text-sm' />

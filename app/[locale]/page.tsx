@@ -1,6 +1,6 @@
 'use client'
 
-//import ExitIntentPopup from '@/components/shared/exitIntentPopup'
+import ExitIntentPopup from '@/components/shared/exitIntentPopup'
 import { About } from './_components/about'
 import { ContactSection } from './_components/contacts'
 import FloatingActions from './_components/floating-actions'
@@ -16,7 +16,7 @@ function Page() {
 			<div className='fixed top-0 left-0 w-full z-10'>
 				<Navbar />
 			</div>
-			{/* <ExitIntentPopup /> */}
+			<ExitIntentPopup />
 			<Hero />
 			<FloatingActions />
 			<About />

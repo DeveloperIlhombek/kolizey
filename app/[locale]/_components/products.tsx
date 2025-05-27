@@ -23,7 +23,7 @@ export const Products = () => {
 		>
 			<div className='w-full max-w-7xl mx-auto'>
 				<Tabs defaultValue='all' className='w-full text-black '>
-					<TabsList className='w-full flex justify-center gap-1 items-center mb-6'>
+					<TabsList className='w-full flex justify-center text-black gap-1 items-center mb-6 bg-[#c3b06eff]'>
 						<TabsTrigger value='all'>Hammasi</TabsTrigger>
 						<TabsTrigger value='ustun'>Ustun</TabsTrigger>
 						<TabsTrigger value='balyasina'>Balyasina</TabsTrigger>
@@ -73,7 +73,7 @@ export const Products = () => {
 				{/* tablar va productlar */}
 				<ContactDialog
 					trigger={
-						<Button className='mt-10 mx-auto block bg-amber-500 hover:bg-amber-600'>
+						<Button className='mt-10 mx-auto block text-black bg-[#c3b06eff] hover:bg-amber-600'>
 							Biz bilan bog‘lanish
 						</Button>
 					}

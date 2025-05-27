@@ -36,7 +36,7 @@ function Hero() {
 			<BackgroundCellCore />
 			{/* Content */}
 			<div className='relative w-full h-full z-0 flex items-center'>
-				<div className='container flex items-center justify-center mx-auto px-4 sm:px-6 lg:px-8'>
+				<div className='container flex items-center flex-col lg:flex-row  justify-center mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='max-w-3xl'>
 						{/* Tagline */}
 						<motion.div
@@ -153,15 +153,15 @@ function Hero() {
 												alt='Decorative Pillar'
 												width={300}
 												height={300}
-												// className='object-cover rounded-2xl'
-												// sizes='(max-width: 768px) 100vw, 50vw'
+												className='object-cover rounded-2xl'
+												sizes='(max-width: 768px) 100vw, 50vw'
 											/>
 										</div>
 									),
 								},
 							]}
-							offset={15}
-							scaleFactor={0.06}
+							offset={5}
+							scaleFactor={0.03}
 						/>
 					</div>
 				</div>
