@@ -133,7 +133,7 @@ export function Navigation() {
 									<AnimatePresence>
 										{isHovered && (
 											<motion.span
-												className='absolute inset-0 bg-white opacity-20'
+												className='absolute inset-0 bg-blue-500 opacity-80'
 												initial={{ x: '-100%' }}
 												animate={{ x: '100%' }}
 												exit={{ x: '100%' }}

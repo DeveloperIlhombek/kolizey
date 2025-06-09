@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { CardStack } from '@/components/shared/card-stack'
+import ContactDialog from '@/components/shared/contact-dialog'
+import VideoPlay from '@/components/shared/video-play'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { motion, useAnimation } from 'framer-motion'
@@ -53,15 +55,16 @@ function Hero() {
 
 						{/* Title */}
 						<motion.h1
-							className='mt-4 md:mt-6 text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight'
+							className='mt-4 md:mt-6 text-4xl sm:text-5xl md:text-6xl text-white leading-tight font-bold bg-gradient-to-r from-amber-900 to-amber-300/70 bg-clip-text px-2'
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.4, duration: 0.6 }}
 						>
-							<span className='text-white font-bold bg-gradient-to-r from-amber-400 to-amber-300/70 bg-clip-text px-2'>
-								Kolizey
-							</span>{' '}
-							architectural masterpieces in every detail
+							RIM USTUNLARI QOLIPLARI.
+							<br />
+							<span className='text-xl sm:text-3xl'>
+								BIRINCHI QO`L, ULGURJI NARXDA
+							</span>
 						</motion.h1>
 
 						{/* Buttons */}
@@ -72,22 +75,34 @@ function Hero() {
 							animate='visible'
 						>
 							<motion.div variants={itemVariants}>
-								<Button
-									className='h-12 px-6 bg-amber-400 hover:bg-amber-500 text-black font-medium text-base transition-all'
-									size='lg'
-								>
-									Bog&apos;lanish
-								</Button>
+								<ContactDialog
+									trigger={
+										<Button
+											className='h-12 px-6 bg-[#c7b063] hover:bg-amber-500 text-black font-medium text-base transition-all'
+											size='lg'
+										>
+											Bog&apos;lanish
+										</Button>
+									}
+								/>
 							</motion.div>
 
-							<motion.div variants={itemVariants}>
-								<Button
-									className='h-12 w-12 rounded-full bg-amber-400 hover:bg-amber-500 text-black transition-all flex items-center justify-center'
-									size='icon'
-									aria-label='Play video'
-								>
-									<PlayIcon className='h-5 w-5' />
-								</Button>
+							<motion.div
+								variants={itemVariants}
+								initial='hidden'
+								animate='visible'
+							>
+								<VideoPlay
+									trigger={
+										<Button
+											className='h-12 w-12 rounded-full bg-amber-400 hover:bg-amber-500 text-black transition-all flex items-center justify-center'
+											size='icon'
+											aria-label='Play video'
+										>
+											<PlayIcon className='h-5 w-5' />
+										</Button>
+									}
+								/>
 							</motion.div>
 						</motion.div>
 					</div>
