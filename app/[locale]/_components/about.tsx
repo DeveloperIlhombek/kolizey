@@ -7,7 +7,7 @@ import Image from 'next/image'
 export function About() {
 	return (
 		<section
-			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-white dark:bg-slate-950 p-20'
+			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-slate-950 p-20'
 			id='about'
 		>
 			<div
@@ -19,7 +19,7 @@ export function About() {
 				)}
 			/>
 
-			<div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black' />
+			<div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-950  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
 
 			<motion.h2
 				initial={{ opacity: 0, y: -20 }}
