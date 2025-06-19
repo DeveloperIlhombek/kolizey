@@ -9,7 +9,7 @@ import {
 import { useRef, useState } from 'react'
 
 function VideoPlay({ trigger }: { trigger: React.ReactNode }) {
-	const [open, setOpen] = useState(true)
+	const [open, setOpen] = useState(false)
 	const triggerRef = useRef<HTMLButtonElement>(null)
 
 	return (
@@ -32,6 +32,7 @@ function VideoPlay({ trigger }: { trigger: React.ReactNode }) {
 							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
 							referrerPolicy='strict-origin-when-cross-origin'
 							allowFullScreen
+							loading='lazy'
 						/>
 					</div>
 				</DialogContent>

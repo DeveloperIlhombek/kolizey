@@ -148,6 +148,7 @@ function Hero() {
 														alt='kolonna'
 														width={250}
 														height={250}
+														loading='lazy'
 														className='w-full h-full object-contain'
 													/>
 												</div>

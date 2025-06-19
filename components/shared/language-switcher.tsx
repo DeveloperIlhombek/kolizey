@@ -84,6 +84,7 @@ export function LanguageSwitcher() {
 					alt={selectedLanguage.name}
 					width={24}
 					height={24}
+					loading='lazy'
 					className='rounded-sm'
 				/>
 				<span className='font-medium'>

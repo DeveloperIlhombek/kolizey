@@ -144,6 +144,7 @@ export function MobileMenu() {
 										alt='kolizey'
 										width={140}
 										height={80}
+										loading='lazy'
 										className='object-contain'
 									/>
 								</motion.div>
