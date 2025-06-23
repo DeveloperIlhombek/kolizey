@@ -5,7 +5,7 @@ import { SlLocationPin } from 'react-icons/sl'
 
 function Footer() {
 	return (
-		<footer className='container relative mx-auto grid grid-cols-1 gap-6 bg-slate-900 p-4 text-gray-50 shadow-inner shadow-[#c3b06eff] ring-2 backdrop-blur-sm transition duration-500 group-hover:duration-500 dark:ring-0 sm:p-6 md:grid-cols-9'>
+		<footer className='container relative mx-auto grid grid-cols-1 gap-6 bg-slate-900 p-4 text-gray-50 shadow-inner shadow-[#c3b06eff] ring-2 backdrop-blur-sm transition duration-500 group-hover:duration-500  sm:p-6 md:grid-cols-9'>
 			{/* Logo Section */}
 			<div className='col-span-1 flex flex-col items-center md:col-span-2 md:items-start'>
 				<Image
@@ -32,7 +32,7 @@ function Footer() {
 							<Link
 								href={item.route}
 								key={item.label}
-								className='text-center text-sm font-semibold text-black dark:text-white md:text-left md:text-base'
+								className='text-center text-sm font-semibold text-white md:text-left md:text-base'
 							>
 								{item.label}
 							</Link>
@@ -54,7 +54,7 @@ function Footer() {
 					loading='lazy'
 					title='Joylashuv'
 				></iframe>
-				<div className='mt-4 flex items-center justify-center gap-2 font-serif text-black dark:text-white md:justify-start'>
+				<div className='mt-4 flex items-center justify-center gap-2 font-serif text-white md:justify-start'>
 					<SlLocationPin className='text-blue-500' size={20} />
 					<p className='text-center text-xs sm:text-sm'>
 						University Boulevard 17 str, 140104, Samarqand Region
