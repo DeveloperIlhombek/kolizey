@@ -96,25 +96,24 @@ export const ContactSection = () => {
 		}
 	}
 	const inputClass =
-		'border-[#1C2752]/20 focus:border-[#FFB342] focus:ring-[#FFB342] dark:border-slate-600 dark:bg-slate-800 dark:text-white'
+		'border-[#1C2752]/20 focus focus:ring-[#FFB342] bg-slate-800 text-white'
 
 	return (
 		<section
 			id='contact'
-			className='relative min-h-screen w-full overflow-hidden bg-white dark:bg-slate-950 py-20'
+			className='relative min-h-screen w-full overflow-hidden bg-slate-950 py-20'
 		>
 			{/* Background pattern */}
 			<div
 				className={cn(
 					'absolute inset-0',
 					'[background-size:40px_40px]',
-					'[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]',
-					'dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]'
+					'[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]'
 				)}
 			/>
 
 			{/* Radial gradient overlay */}
-			<div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black' />
+			<div className='pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] bg-slate-950' />
 
 			<div className='container relative  mx-auto px-4 sm:px-6 lg:px-8'>
 				<motion.div
@@ -124,7 +123,7 @@ export const ContactSection = () => {
 					className='mb-16 text-center'
 				>
 					<h2 className='text-lg text-primary mb-2 tracking-wider'>Contact</h2>
-					<h2 className='text-3xl md:text-4xl font-bold text-slate-900 dark:text-white'>
+					<h2 className='text-3xl md:text-4xl font-bold text-white'>
 						Connect With Us
 					</h2>
 				</motion.div>
@@ -150,13 +149,9 @@ export const ContactSection = () => {
 							>
 								<div className='flex gap-2 mb-1 items-center'>
 									<Building2 className='text-amber-500' />
-									<div className='font-bold text-slate-800 dark:text-slate-200'>
-										Manzilimiz
-									</div>
+									<div className='font-bold text-slate-200'>Manzilimiz</div>
 								</div>
-								<div className='text-slate-600 dark:text-slate-400'>
-									Samarqand sh
-								</div>
+								<div className='text-slate-400'>Samarqand sh</div>
 							</motion.div>
 
 							<motion.div
@@ -166,13 +161,11 @@ export const ContactSection = () => {
 							>
 								<div className='flex gap-2 mb-1 items-center'>
 									<Phone className='text-amber-500' />
-									<div className='font-bold text-slate-800 dark:text-slate-200'>
+									<div className='font-bold text-slate-200'>
 										Bizga qo&apos;ng&apos;roq qiling
 									</div>
 								</div>
-								<div className='text-slate-600 dark:text-slate-400'>
-									+998 99 123 45 67
-								</div>
+								<div className='text-slate-400'>+998 99 123 45 67</div>
 							</motion.div>
 
 							<motion.div
@@ -182,11 +175,9 @@ export const ContactSection = () => {
 							>
 								<div className='flex gap-2 items-center'>
 									<Clock className='text-amber-500' />
-									<div className='font-bold text-slate-800 dark:text-slate-200'>
-										Visit us
-									</div>
+									<div className='font-bold text-slate-200'>Visit us</div>
 								</div>
-								<div className='text-slate-600 dark:text-slate-400'>
+								<div className='text-slate-400'>
 									<div>Dushanba - Shanba</div>
 									<div>8:00 - 18:00</div>
 								</div>
@@ -197,7 +188,7 @@ export const ContactSection = () => {
 					<Form {...form}>
 						<motion.form
 							onSubmit={form.handleSubmit(onSubmit)}
-							className='p-6 space-y-4 bg-white dark:bg-slate-800 rounded-lg shadow-md'
+							className='p-6 space-y-4 bg-slate-800 rounded-lg shadow-md'
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 0.6 }}
@@ -207,7 +198,7 @@ export const ContactSection = () => {
 								name='username'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+										<FormLabel className='text-sm font-medium text-gray-300'>
 											Ismingiz
 										</FormLabel>
 										<FormControl>
@@ -228,7 +219,7 @@ export const ContactSection = () => {
 								name='phone'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+										<FormLabel className='text-sm font-medium text-gray-300'>
 											Telefon raqamingiz
 										</FormLabel>
 										<FormControl>
@@ -250,7 +241,7 @@ export const ContactSection = () => {
 								name='location'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+										<FormLabel className='text-sm font-medium text-gray-300'>
 											Manzilingiz:
 										</FormLabel>
 										<FormControl>
@@ -272,7 +263,7 @@ export const ContactSection = () => {
 								name='message'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+										<FormLabel className='text-sm font-medium text-gray-300'>
 											Xabaringiz
 										</FormLabel>
 										<FormControl>
