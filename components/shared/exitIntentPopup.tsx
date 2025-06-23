@@ -11,27 +11,34 @@ export default function ExitIntentPopup() {
 	const [showModal, setShowModal] = useState(false)
 
 	useEffect(() => {
-		const hasSeenPopup = sessionStorage.getItem('exitPopupShown')
-		if (hasSeenPopup === 'true') return
+		// Popup oldin ko'rsatilganmi, tekshirish
+		const hasSeenPopup = localStorage.getItem('exitPopupShown')
+		if (hasSeenPopup === 'true') {
+			return
+		}
 
+		// Foydalanuvchi sahifadan chiqmoqchi bo'lganida
 		const handleMouseLeave = (e: MouseEvent) => {
-			// Foydalanuvchi sichqonchani sahifa yuqori qismidan chiqarganda
-			if (e.clientY < 10) {
+			if (e.clientY <= 10 && !showModal) {
 				setShowModal(true)
 			}
 		}
 
-		// Sahifadan chiqish niyatini aniqlash
-		document.addEventListener('mouseleave', handleMouseLeave)
+		// 2 soniya kechikish bilan hodisani qo'shish
+		const timer = setTimeout(() => {
+			document.addEventListener('mouseleave', handleMouseLeave)
+		}, 2000)
 
+		// Tozalash funksiyasi
 		return () => {
+			clearTimeout(timer)
 			document.removeEventListener('mouseleave', handleMouseLeave)
 		}
-	}, [])
+	}, [showModal]) // showModal o'zgarishini kuzatish
 
 	const closePopup = () => {
 		setShowModal(false)
-		sessionStorage.setItem('exitPopupShown', 'false') // Faqat bir marta ko'rsatish
+		localStorage.setItem('exitPopupShown', 'true') // Popup ko'rsatildi deb belgilash
 	}
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,8 +50,8 @@ export default function ExitIntentPopup() {
 			message: formData.get('message'),
 		}
 
-		// Bu yerda ma'lumotlarni serverga yuborish mumkin
-		console.log('Form data:', data)
+		// Ma'lumotlarni serverga yuborish
+		console.log("Yuborilgan ma'lumotlar:", data)
 		alert("Rahmat! Ma'lumot yuborildi.")
 		closePopup()
 	}
@@ -66,7 +73,6 @@ export default function ExitIntentPopup() {
 						exit={{ scale: 0.8, opacity: 0, y: 20 }}
 						transition={{ duration: 0.3, ease: 'backOut' }}
 					>
-						{/* Close button */}
 						<Button
 							variant='ghost'
 							size='icon'
@@ -81,8 +87,8 @@ export default function ExitIntentPopup() {
 								Sahifani tark etmoqchimisiz?
 							</h2>
 							<p className='text-gray-600'>
-								Iltimos, biz bilan aloqada qoling. Malumotlaringizni qoldiring
-								va biz sizga eng yaxshi takliflarimizni yuboramiz.
+								Iltimos, biz bilan aloqada qoling. Ma&apos;lumotlaringizni
+								qoldiring va biz sizga eng yaxshi takliflarimizni yuboramiz.
 							</p>
 						</div>
 
