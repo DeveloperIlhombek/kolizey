@@ -13,6 +13,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { products } from '@/constant'
 import { useProductStore } from '@/store/selectedProducts'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 export const Products = () => {
@@ -22,9 +23,19 @@ export const Products = () => {
 			id='products'
 		>
 			<div className='w-full max-w-7xl mx-auto'>
-				<Tabs defaultValue='all' className='w-full text-black '>
-					<TabsList className='w-full flex justify-center text-black gap-1 items-center mb-6 bg-[#c3b06eff]'>
-						<TabsTrigger value='all'>Hammasi</TabsTrigger>
+				<motion.h2
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					className='relative text-4xl text-center md:text-5xl font-bold text-amber-500 mb-8'
+				>
+					Products
+				</motion.h2>
+				<Tabs defaultValue='all' className='w-full text-black  '>
+					<TabsList className='w-full flex justify-center gap-1 items-center mb-6 bg-[#c3b06eff]'>
+						<TabsTrigger value='all' className='text-black'>
+							Hammasi
+						</TabsTrigger>
 						<TabsTrigger value='ustun'>Ustun</TabsTrigger>
 						<TabsTrigger value='balyasina'>Balyasina</TabsTrigger>
 						<TabsTrigger value='regel'>Regel</TabsTrigger>
@@ -90,39 +101,41 @@ const ProductList = ({ items }: { items: typeof products }) => {
 		selectedProducts.some(item => item.id === id)
 
 	return (
-		<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-			{items.map(item => (
-				<Card
-					key={item.id}
-					className={`${
-						isSelected(item.id) ? 'ring-2 ring-amber-500' : ''
-					} hover:scale-105 transition-transform relative duration-300 ease-in-out bg-gray-600/30`}
-				>
-					<CardHeader className='flex items-center gap-2'>
-						<Checkbox
-							checked={isSelected(item.id)}
-							onCheckedChange={() => toggleProduct(item)}
-						/>
-						<CardTitle className='text-center text-amber-500'>
-							{item.name}
-						</CardTitle>
-					</CardHeader>
-					<CardContent className='flex justify-center'>
-						<Image
-							src={item.img}
-							alt={item.name}
-							width={300}
-							height={300}
-							className='object-cover'
-						/>
-					</CardContent>
-					<CardFooter className=' hover:bg-gray-500/50 absolute bottom-2 left-0 right-0 p-4'>
-						<p className='text-center text-sm text-gray-500'>
-							{item.defination || "Mahsulot haqida ma'lumot"}
-						</p>
-					</CardFooter>
-				</Card>
-			))}
+		<div>
+			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+				{items.map(item => (
+					<Card
+						key={item.id}
+						className={`${
+							isSelected(item.id) ? 'ring-2 ring-amber-500' : ''
+						} hover:scale-105 transition-transform relative duration-300 ease-in-out bg-gray-600/30`}
+					>
+						<CardHeader className='flex items-center gap-2'>
+							<Checkbox
+								checked={isSelected(item.id)}
+								onCheckedChange={() => toggleProduct(item)}
+							/>
+							<CardTitle className='text-center text-amber-500'>
+								{item.name}
+							</CardTitle>
+						</CardHeader>
+						<CardContent className='flex justify-center'>
+							<Image
+								src={item.img}
+								alt={item.name}
+								width={300}
+								height={300}
+								className='object-cover'
+							/>
+						</CardContent>
+						<CardFooter className=' hover:bg-gray-500/50 absolute bottom-2 left-0 right-0 p-4'>
+							<p className='text-center text-sm text-gray-500'>
+								{item.defination || "Mahsulot haqida ma'lumot"}
+							</p>
+						</CardFooter>
+					</Card>
+				))}
+			</div>
 		</div>
 	)
 }

@@ -101,8 +101,8 @@ export function Navigation() {
 								<Image
 									src='/kolizeylogo.png'
 									alt='kolizey'
-									width={scrolled ? 150 : 180}
-									height={scrolled ? 80 : 100}
+									width={150}
+									height={80}
 									className='transition-all duration-300'
 									priority
 								/>

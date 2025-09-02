@@ -5,7 +5,7 @@ import { SlLocationPin } from 'react-icons/sl'
 
 function Footer() {
 	return (
-		<footer className='container relative mx-auto grid grid-cols-1 gap-6 bg-slate-900 p-4 text-gray-50 shadow-inner shadow-[#c3b06eff] ring-2 backdrop-blur-sm transition duration-500 group-hover:duration-500  sm:p-6 md:grid-cols-9'>
+		<footer className='container relative mx-auto grid grid-cols-1 gap-6 bg-slate-900 p-4 text-gray-50 shadow-inner shadow-[#c3b06eff] ring-0 backdrop-blur-sm transition duration-500 group-hover:duration-500  sm:p-6 md:grid-cols-9'>
 			{/* Logo Section */}
 			<div className='col-span-1 flex flex-col items-center md:col-span-2 md:items-start'>
 				<Image

@@ -54,7 +54,7 @@ export function Service() {
 
 	return (
 		<section
-			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-slate-950 p-20'
+			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-slate-950 px-20 py-2'
 			id='service'
 		>
 			<div

@@ -7,11 +7,13 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { PlayIcon, RocketIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import '../app.css'
 
 function Hero() {
+	const t = useTranslations('Dict')
 	const containerVariants = {
 		hidden: { opacity: 0 },
 		visible: {
@@ -49,10 +51,8 @@ function Hero() {
 								transition={{ duration: 0.6 }}
 							>
 								<RocketIcon className='h-4 w-4 mr-2 text-amber-400' />
-								<p className='text-xs sm:text-sm tracking-wide text-white/90'>
-									Go&apos;zallik detallarda — har bir ustun o&apos;ziga xos
-									asar!
-								</p>
+
+								<p>{t('heroTitle')}</p>
 							</motion.div>
 
 							{/* Title */}

@@ -7,7 +7,7 @@ import Image from 'next/image'
 export function About() {
 	return (
 		<section
-			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-slate-950 p-20'
+			className='relative flex flex-col min-h-screen w-full overflow-hidden items-center justify-center bg-slate-950 p-20 pt-2'
 			id='about'
 		>
 			<div
