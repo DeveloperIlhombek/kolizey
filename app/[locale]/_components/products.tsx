@@ -61,7 +61,7 @@ export const Products = () => {
 			{/* Radial Gradient Overlay */}
 			<div className='pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] bg-slate-950' />
 
-			<div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8'>
+			<div className='relative container mx-auto px-4 sm:px-6 lg:px-8 '>
 				{/* Header Section */}
 				<motion.div
 					initial={{ opacity: 0, y: -30 }}
@@ -274,7 +274,7 @@ const ProductList = ({ items }: { items: typeof products }) => {
 						onClick={() => toggleProduct(item)}
 					>
 						{/* Selection Indicator */}
-						<div className='absolute top-4 right-4 z-10'>
+						<div className='absolute top-4 right-4 '>
 							<div
 								className={cn(
 									'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300',
@@ -292,7 +292,7 @@ const ProductList = ({ items }: { items: typeof products }) => {
 						</div>
 
 						{/* Hover Overlay */}
-						<div className='absolute inset-0 bg-gradient-to-t from-amber-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-[1]' />
+						<div className='absolute inset-0 bg-gradient-to-t from-amber-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ' />
 
 						<CardHeader className='pb-4'>
 							<CardTitle className='text-amber-400 text-lg font-semibold group-hover:text-amber-300 transition-colors duration-300'>
