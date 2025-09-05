@@ -16,6 +16,14 @@ export const navlink = [
 		route: '/products',
 	},
 ]
+export type ProductType = {
+	id: string
+	name: string
+	img: string
+	value: string
+	defination?: string
+}
+
 export const products = [
 	{
 		id: '1',

@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { products } from '@/constant'
+import { products, ProductType } from '@/constant' // ProductType import qilingan deb faraz qilamiz
 import { cn } from '@/lib/utils'
 import { useProductStore } from '@/store/selectedProducts'
 import { motion } from 'framer-motion'
@@ -211,7 +211,12 @@ export const Products = () => {
 	)
 }
 
-const ProductList = ({ items }: { items: typeof products }) => {
+// Yangi interface qo'shamiz
+interface ProductListProps {
+	items: ProductType[] // products massividagi elementlar turi
+}
+
+const ProductList = ({ items }: ProductListProps) => {
 	const { selectedProducts, toggleProduct } = useProductStore()
 
 	const isSelected = (id: string) =>
